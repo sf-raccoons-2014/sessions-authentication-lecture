@@ -19,11 +19,10 @@ post '/signup' do
 end
 
 post '/login' do
-  user= User.find_by_email (params[:email])
   # Need to verify password
-  if user
+  if User.authenticate(params)
     session[:user_id] = user.id
-    redirect '/'
+    redirect '/secret'
   else
     @errors = "Try again"
     erb :index
