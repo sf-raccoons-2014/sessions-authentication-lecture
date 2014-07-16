@@ -1,0 +1,11 @@
+<div class="container">
+
+<h2>Super Cool App.</h2>
+
+ <% if current_user %>
+  <%= erb :logged_in_nav %>
+  <h2>Welcome logged in user your email is : <%= current_user.email %></h2>
+ <% else %>
+  <%= erb :nav  %>
+ <% end %>
+</div>

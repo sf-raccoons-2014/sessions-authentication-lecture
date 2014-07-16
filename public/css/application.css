@@ -1,0 +1,22 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+
+th {
+  text-align: left;
+}
+
+form {
+  display: inline-block;
+  border: 2px red groove;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+input {
+  display: block;
+
+}
