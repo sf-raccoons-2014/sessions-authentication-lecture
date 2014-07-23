@@ -1,5 +1,3 @@
-
-
 get '/' do
   erb :index
 end
@@ -14,19 +12,22 @@ end
 # ============SESSIONS
 
 post '/signup' do
-  user = User.create(params)
-  session[:user_id]=user.id
-  p " Session: #{session}"
+  user = User.new(params)
+  if user.save
+    session[:user_id]=user.id
+  else
+    flash[:error]=user.errors.full_messages
+  end
   redirect '/'
 end
 
 post '/login' do
-  # Need to verify password
-  if User.authenticate(params)
-    session[:user_id] = user.id
+  @user = User.find_by_email(params[:email])
+  if @user.authenticate(params[:password])
+    session[:user_id] = @user.id
     redirect '/secret'
   else
-    @errors = "Try again"
+    flash[:errors] = "Try again"
     erb :index
   end
 
